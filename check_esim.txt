@@ -1,0 +1,27 @@
+screen /dev/ttyUSB2 115200  # Mở terminal để cấu hình esim
+
+AT+CPIN?           # Kiểm tra SIM có sẵn sàng không
+AT+CSQ             # Kiểm tra tín hiệu mạng (RSSI)
+AT+CNUM            # Kiểm tra số điện thoại lưu trên SIM (nếu có)
+AT+COPS=0          # Tự động chọn mạng
+AT+CREG?           # Kiểm tra trạng thái đăng ký mạng GSM
+AT+CGREG?          # Kiểm tra trạng thái đăng ký mạng dữ liệu (GPRS)
+AT+CGDCONT=1,"IP","APN"   # Thay "APN" bằng APN nhà mạng (ví dụ "internet" cho Viettel)
+AT+CGATT=1                # Kích hoạt GPRS
+AT+CGACT=1,1              # Kích hoạt PDP context
+AT+CMGF=1                 # Chọn text mode
+AT+CSCS="GSM"             # Chọn character set
+AT+CSCA?                   # Kiểm tra số trung tâm SMS (SMSC)
+AT+CMGS="+84xxxxxxxx"      # Gửi SMS
+AT+CMGL="ALL"              # Liệt kê tất cả SMS trên SIM
+AT+CMGR=<index>            # Đọc SMS theo index
+AT+CMGD=<index>            # Xóa SMS theo index
+AT+CUSD=1,"*101#",15       # Kiểm tra số dư (nếu SIM đã attach mạng)
+ATI                        # Thông tin module
+AT+GMI                     # Nhà sản xuất
+AT+GMM                     # Model
+AT+GMR                     # Firmware version
+AT+GMI   # Manufacturer
+AT+GMM   # Model
+AT+GMR   # Firmware version
+AT+GSN   # Serial/IMEI
